@@ -31,7 +31,6 @@ const orderedBillsList = _.orderBy(dataWithCalculatedStatus, ['calculatedStatus'
 
 const App = () =>
   <div>
-    <h1>Totals:</h1>
     {_.map(totalsInCents, (total, key) =>
       <div key={key}>{key}: {formatCentsToDollars(total)}</div>)
     }
