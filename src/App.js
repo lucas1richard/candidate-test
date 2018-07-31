@@ -36,8 +36,8 @@ const App = () =>
       <div key={key}>{key}: {formatCentsToDollars(total)}</div>)
     }
     <ul>
-      {orderedBillsList.map((bill) =>
-        <li key={bill.id}>{bill.id}: {formatCentsToDollars(bill.amountInCents)}, {bill.calculatedStatus}</li>)
+      {orderedBillsList.map(({ id, amountInCents, calculatedStatus, dueDate }) =>
+        <li key={id}>{id}: {formatCentsToDollars(amountInCents)}, {calculatedStatus}, {dueDate}</li>)
       }
     </ul>
   </div>
