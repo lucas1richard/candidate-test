@@ -1,44 +1,42 @@
+// @flow
+
 import React from 'react';
-import _ from 'lodash';
-import { isPastDate, formatCentsToDollars } from 'clark-utils';
-import DATA, { BillType } from './data';
+import { formatCentsToDollars } from 'clark-utils';
+import styled from 'styled-components';
+import BILL_WITH_CALCULATED_STATUS, { type BillWithCalculatedStatusType } from './data';
 
-type CalculatedStatusType = 'paid' | 'overdue' | 'outstanding';
-
-const calculateBillStatus = (bill: BillType): CalculatedStatusType => {
-  if (bill.status === 'paid') return 'paid';
-  return isPastDate(bill.dueDate) ? 'overdue' : 'outstanding';
-}
-
-type BillWithCalculatedStatusType = BillType & { calculatedStatus: CalculatedStatusType };
-
-const addCalculatedStatus = (bill: BillType): BillWithCalculatedStatusType =>
-  ({ ...bill, calculatedStatus: calculateBillStatus(bill) });
-
-const dataWithCalculatedStatus: BillWithCalculatedStatusType[] = _.map(DATA, addCalculatedStatus);
-
-const totalsInCents = dataWithCalculatedStatus.reduce(
-  (acc, { amountInCents, calculatedStatus }) => (
-    { ...acc,
-      total: acc.total + amountInCents,
-      [calculatedStatus]: acc[calculatedStatus] + amountInCents
-    }
-  ) ,
-  { total: 0, paid: 0, overdue: 0, outstanding: 0 }
-);
-
-const orderedBillsList = _.orderBy(dataWithCalculatedStatus, ['calculatedStatus', 'dueDate'], ['asc', 'desc']);
+const Bill = ({ id, amountInCents, calculatedStatus, dueDate }: BillWithCalculatedStatusType) =>
+  <BillWrapper key={id}>
+    <div>id: {id}</div>
+    <div>{formatCentsToDollars(amountInCents)}</div>
+    <div>{calculatedStatus}</div>
+    <div>{dueDate}</div>
+  </BillWrapper>
 
 const App = () =>
   <div>
-    {_.map(totalsInCents, (total, key) =>
-      <div key={key}>{key}: {formatCentsToDollars(total)}</div>)
-    }
-    <ul>
-      {orderedBillsList.map(({ id, amountInCents, calculatedStatus, dueDate }) =>
-        <li key={id}>{id}: {formatCentsToDollars(amountInCents)}, {calculatedStatus}, {dueDate}</li>)
-      }
-    </ul>
+    <Bill {...BILL_WITH_CALCULATED_STATUS} />
   </div>
 
 export default App;
+
+const BillWrapper = styled.div`
+  outline: solid black 1px;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+`;
+
+
+// type BillStateType = {};
+
+// class StatefulBill extends React.Component<BillWithCalculatedStatusType, BillStateType> {
+//   render() {
+//     return <Bill {...this.props} />
+//   }
+// }
+
+// const App = () =>
+//   <div>
+//     <StatefulBill {...BILL_WITH_CALCULATED_STATUS} />
+//   </div>
