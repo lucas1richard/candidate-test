@@ -21,7 +21,7 @@ const App = () =>
 export default App;
 
 const BillWrapper = styled.div`
-  outline: solid black 1px;
+  border: solid black 1px;
   max-width: 600px;
   margin: 20px auto;
   padding: 20px;
