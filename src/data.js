@@ -13,12 +13,15 @@ type CalculatedStatusType = 'paid' | 'overdue' | 'outstanding';
 
 export type BillWithCalculatedStatusType = BillType & { calculatedStatus: CalculatedStatusType };
 
-const BILL_WITH_CALCULATED_STATUS: BillWithCalculatedStatusType = {
-  id: 'f',
+export const BILL_WITH_CALCULATED_STATUS: BillWithCalculatedStatusType = {
+  id: 'bill_1',
   calculatedStatus: 'overdue',
   dueDate: '2018-06-06',
   amountInCents: 93020,
   status: 'pending',
 }
 
-export default BILL_WITH_CALCULATED_STATUS;
+export const Bills: BillWithCalculatedStatusType[] = [...Array(5)].map((_, idx) => ({
+  ...BILL_WITH_CALCULATED_STATUS,
+  id: `bill_${idx + 1}`
+}));
