@@ -28,7 +28,7 @@ const BILLS: BillsType = {
   },
   c: {
     id: 'c',
-    dueDate: '2018-10-11',
+    dueDate: '2019-10-11',
     amountInCents: 101363,
     status: 'pending',
   },
@@ -64,7 +64,7 @@ const BILLS: BillsType = {
   },
   i: {
     id: 'i',
-    dueDate: '2018-03-13',
+    dueDate: '2019-03-13',
     amountInCents: 525222,
     status: 'pending',
   },
