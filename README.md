@@ -16,7 +16,11 @@ The final product should look like this:
 
 ![Final Product](/public/image.png)
 
-Keep in mind that we're looking to see how you approach writing code and not just for the correct answers.
+Keep in mind that we're looking to see how you approach writing code and not just for the correct answers. Criteria we look for:
+
+1. Thoughtful application of the Functional Programming paradigm
+2. Consistent use of ES6/7 syntax
+3. Overall simplicity and elegance. We like clear, concise code.
 
 If you're comfortable, we'd love to see you use [Flow](https://flow.org/en/) to add type annotations to your work, but please don't feel that it's a requirement. Test your type annotations by running `yarn run flow`.
 
