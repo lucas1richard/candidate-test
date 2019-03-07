@@ -1,6 +1,8 @@
 // @flow
 
 type StatusType = 'pending' | 'paid';
+export const PENDING = 'pending';
+export const PAID = 'paid';
 
 type BillType = {
   id: string,
